@@ -1,0 +1,151 @@
+<div class="container-fluid main-container">
+    <div class="row mb-2">
+        <div class="col">
+            <!-- <button mat-button mat-raised-button color="primary" fxHide fxShow.lt-sm (click)="addLocation()">
+                <mat-icon>queue</mat-icon> ADD LOCATION
+              </button> -->
+            <button class="btn btn-primary btn-sm px-1 py-1 mt-2" type="button" (click)="addNewLocation()"> <i class="fa fa-plus" aria-hidden="true"></i> Location</button>
+        </div>
+    </div>
+    
+
+    <form [formGroup]="geoLocationForm" (keydown.enter)="submit()">
+        <div formArrayName="locationsArray" class="container-fluid mx-0 px-0" >
+            <div class=" " *ngFor="let location of locationsArray().controls; let locIndex = index" [formGroupName]="locIndex">
+
+                <mat-card class="main-card mb-2">
+                    <!-- <div class="float-right" ><mat-icon (click)="removeLocation(locIndex,location)">delete</mat-icon></div> -->
+                    <div class="float-right m-0 p-0" style="cursor: pointer;"><i class="fa fa-trash text text-danger" (click)="removeLocation(locIndex,location)" aria-hidden="true"></i></div>
+                    <div class="row">
+                        <div class="col">
+                            <!-- <p> -->
+                                <mat-form-field>
+                                    <mat-label>Location Name</mat-label>
+                                    <input matInput formControlName="name" [errorStateMatcher]="matcher" placeholder="Ex. Kolkata">
+                                    <mat-error *ngIf="form.locationsArray['controls'][locIndex]['controls'].name.hasError('required')">
+                                        Location Name is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                        </div>
+                        <div class="col">
+                                <mat-form-field>
+                                    <mat-label>Latitude</mat-label>
+                                    <input matInput formControlName="lat" [errorStateMatcher]="matcher">
+                                    <mat-error *ngIf="form.locationsArray['controls'][locIndex]['controls'].lat.hasError('required')">
+                                        Latitude is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field>
+                                <mat-label>Longitude</mat-label>
+                                <input matInput formControlName="long" [errorStateMatcher]="matcher">
+                                <mat-error *ngIf="form.locationsArray['controls'][locIndex]['controls'].long.hasError('required')">
+                                    Longitude is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field>
+                                <mat-label>Timezone</mat-label>
+                                <!-- <input matInput formControlName="timezone" [errorStateMatcher]="matcher"> -->
+                                <!-- <input matInput placeholder="Search for a timezone" formControlName="timezone" [matAutocomplete]="auto"  [errorStateMatcher]="matcher">
+                                <mat-autocomplete #auto="matAutocomplete">
+                                    <mat-option *ngFor="let tz of timezoneArray " [value]="tz.tzCode">{{tz.tzCode}}</mat-option>
+                                </mat-autocomplete> -->
+                                <input matInput list="codes" formControlName="timezone" [errorStateMatcher]="matcher">
+                                <datalist id="codes">
+                                  <option *ngFor="let tz of timezoneArray " [value]="tz.tzCode">{{tz.tzCode}}</option>
+                                </datalist>
+                                <mat-error *ngIf="form.locationsArray['controls'][locIndex]['controls'].timezone.hasError('required')">
+                                    Timezone is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+
+                    <div class="row mb-2 ml-1">
+                        <div class="col">
+                            <button class="btn btn-primary btn-sm px-1 py-0" type="button" (click)="addNewSite(locIndex)"> <i class="fa fa-plus px-0" aria-hidden="true"></i> Site</button>
+                        </div>
+                    </div>
+
+                    <div formArrayName="Sites" class="container-fluid" >
+                        <div class=" " *ngFor="let site of Sites(locIndex).controls; let siteIndex = index" [formGroupName]="siteIndex">
+                            <!-- <div class=" row secondary-card mt-2">
+                                <div class="col "> -->
+                                    <fieldset class="scheduler-border">
+                                        <legend class="scheduler-border">Site</legend>
+
+                                        <div class="float-right m-0 p-0" style="cursor: pointer;"><i class="fa fa-trash text text-danger" (click)="removeSite(locIndex,siteIndex,site)" aria-hidden="true"></i></div>
+
+                                        <div class="row">
+                                            <div class="col col-sm-11">
+                                                <p>
+                                                    <mat-form-field>
+                                                        <mat-label>Site Name</mat-label>
+                                                        <input matInput formControlName="name" [errorStateMatcher]="matcher" placeholder="Ex. Site 1">
+                                                        <mat-error *ngIf="form.locationsArray['controls'][locIndex]['controls'].Sites['controls'][siteIndex]['controls'].name.hasError('required')">
+                                                            Site Name is <strong>required</strong>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-2">
+                                            <div class="col">
+                                                <button class="btn btn-primary btn-sm px-1 py-0" type="button" (click)="addNewhierarchyGroup(locIndex,siteIndex)"> <i class="fa fa-plus pl-0" aria-hidden="true"></i> Hierarchy Group</button>
+                                            </div>
+                                        </div>
+
+                                        <div formArrayName="Hierarchy_Groups" class=" row container-fluid" >
+                                            <div class="col-lg-3 col-md-4 col-sm-6 col-12 px-0" *ngFor="let hierarchyGroup of Hierarchy_Groups(locIndex,siteIndex).controls; let hierarchyGroupIndex = index" [formGroupName]="hierarchyGroupIndex">
+                                               <mat-form-field>
+                                                    <mat-label>Hierarchy Group Name</mat-label>
+                                                    <input matInput formControlName="name" [errorStateMatcher]="matcher" placeholder="Ex. Group 1">
+                                                    <button mat-icon-button matSuffix [attr.aria-label]="'Hide password'">
+                                                        <mat-icon (click)="removeHierarchyGroupIndex(locIndex, siteIndex, hierarchyGroupIndex,hierarchyGroup)">delete</mat-icon>
+                                                    </button>
+                                                    <mat-error *ngIf="form.locationsArray['controls'][locIndex]['controls'].Sites['controls'][siteIndex]['controls'].Hierarchy_Groups['controls'][hierarchyGroupIndex]['controls'].name.hasError('required')">
+                                                        Hierarchy Group Name is <strong>required</strong>
+                                                    </mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                <!-- </div>
+                            </div> -->
+                        </div>
+                    </div>
+
+
+                </mat-card>
+            </div>
+        </div>
+    </form>
+
+    <div class="row mb-2 float-right">
+        <div class="col">
+            <button class="btn btn-primary " type="button" (click)="submit()"> Save</button>
+        </div>
+    </div>
+</div>
+
+<!-- <p>Selected timezone: <b>{{ timezone1 }} </b> </p>
+    <timezone-selector [ngModel]="timezone1"/> -->
+
+<!-- <ng2-timezone-picker
+    [(timezone)]="user.timezone"
+    [placeholder]="placeholderString">
+</ng2-timezone-picker> -->
+
+<!-- <div class="form-group">
+    <label>Select tenant/device time zone: </label>
+    <select name="timeZone" [ngModel]="selectedTz" (ngModelChange)="timeZoneChanged($event)">
+      <option *ngFor="let tz of tzNames" [value]="tz">
+        {{ tz }}
+      </option>
+    </select><span> {{ tzNames.length }}</span>
+  </div> -->

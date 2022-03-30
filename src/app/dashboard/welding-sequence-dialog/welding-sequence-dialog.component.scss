@@ -1,0 +1,22 @@
+.mat-form-field{
+    width: 100%;
+}
+
+.uploadBtn{
+  position: relative;
+  overflow: hidden;
+
+}
+
+.uploadFileInput{
+  position: absolute;
+  font-size: 50px;
+  opacity: 0;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+.wsClass{
+  font-size: x-small;
+}

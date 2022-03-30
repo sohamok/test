@@ -1,0 +1,198 @@
+table {
+  width: 100%;
+  height: auto;
+}
+
+td.mat-column-star {
+  width: 20px;
+  padding-right: 8px !important;
+}
+
+.mat-row {
+  &:hover {
+    background-color: #e9f3ff;
+  }
+  a {
+    color: #3e75ff;
+    text-decoration: none;
+    &:hover {
+    text-decoration: underline;
+    }
+  }
+}
+
+.mat-form-field {
+  font-size: 15px;
+  // width: 100%;
+}
+
+.mat-icon {
+  color: #3e75ff;
+}
+
+.mat-header-cell{
+  color: black;
+  font-size: small;
+  // font-weight: bold;
+  font-family: sans-serif;
+}
+
+.data-label{
+  color: black;
+  font-size: small;
+  // font-weight: bold;
+  font-family: sans-serif;
+}
+
+// .has_label_on_mobile{
+//   // max-width: 5px;
+//   border: medium;
+//   border-color: #3e75ff;
+// }
+
+@media screen and (max-width: 960px) {
+  .mat-elevation-z8 {
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .mat-form-field {
+    font-size: 15px;
+    width: 100%;
+  }
+
+  .mat-header-row {
+    display: none;
+  }
+
+  tbody {
+    display: block;
+    width: 100%;
+  }
+  
+  .mat-table {
+    background: transparent;
+    * {
+      box-sizing: border-box;
+    }
+
+    .mat-row {
+      display: block;
+      overflow: hidden;
+      height: auto;
+      position: relative;
+      clear: both;
+      box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+      background-color: #fff;
+      border-radius: 3px;
+      + .mat-row {
+        margin-top: 24px;
+      }
+    }
+
+    .mat-cell {
+      display: block;
+      width: 100%;
+      padding: 0 16px;
+      margin: 16px 0;
+      border: 0 none;
+      // &:first-child {
+      //   padding: 0 48px 0 16px;
+      //   a {
+      //     font-size: 20px;
+      //     // font-weight: 400;
+      //     color: inherit;
+      //   }
+      //   &:before {
+      //     display: none;
+      //   }
+      // }
+      &.m-card-sub-title {
+        margin-top: -8px;
+        padding: 0 48px 0 16px;
+        color: rgba(0,0,0,.54);
+      }
+    }
+
+    .has_label_on_mobile {
+      &:before {
+        content: attr(data-label);
+        display: inline;
+        font-weight: normal;
+      }
+    }
+
+    .mat-column-star {
+      width: auto;
+      padding: 8px 0 0 !important;
+      margin: 0;
+      position: absolute;
+      top: 0;
+      right: 0;
+      &:before {
+        display: none;
+      }
+    }
+  }
+
+  .mat-paginator {
+    margin-top: 24px;
+
+  }
+
+}
+
+.container-fluid{
+  background-color: #f5f5f5f5;
+}
+
+.mat-column-hardware_id{
+  width: auto;
+}
+
+.mat-column-name{
+  width: auto;
+}
+
+.mat-column-description{
+  width: auto;
+}
+
+.mat-column-status{
+  width: 6rem;
+}
+
+.mat-column-lat{
+  width: auto;
+}
+
+.mat-column-long{
+  width: auto;
+}
+
+.mat-column-type{
+  width: auto;
+}
+
+.mat-column-hierarchyGroup{
+  width: auto;
+}
+
+.mat-column-spec{
+  width: auto;
+}
+
+
+.mat-column-action{
+  width: 1rem;
+}
+
+.mat-paginator {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(192, 175, 175);
+  color: black;
+  text-align: center;
+}

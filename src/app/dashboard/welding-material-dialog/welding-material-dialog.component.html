@@ -1,0 +1,134 @@
+<div class="container-fluid mx-1 p-1 my-3">
+    <div class="m-3 text-center"><h4>New Material</h4></div>
+
+    <div class="mt-3 mx-0 px-0">
+        <form [formGroup]="wmForm" (keydown.enter)="weldMaterialPressEnter()">
+            <div class="row mb-1 mx-1">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Reference Specification</mat-label>
+                        <input matInput formControlName="refName" [errorStateMatcher]="matcher" placeholder="Ex. ASME">
+                        <mat-error *ngIf="form.refName.hasError('required')">
+                            Reference Specification is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Material Name</mat-label>
+                        <input matInput formControlName="name" [errorStateMatcher]="matcher" placeholder="Ex. Titanium">
+                        <mat-error *ngIf="form.name.hasError('required')">
+                            Material is <strong>required</strong>
+                        </mat-error>    
+                    </mat-form-field>
+                </div>
+            </div> 
+
+            <div class="row mb-1 mx-1">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Grade</mat-label>
+                        <input matInput formControlName="grade" [errorStateMatcher]="matcher" placeholder="Ex. A">
+                        <mat-error *ngIf="form.grade.hasError('required')">
+                            Material is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Thickness (mm)</mat-label>
+                        <input matInput formControlName="thickness" [errorStateMatcher]="matcher" placeholder="Ex. 10">
+                        <mat-error *ngIf="form.thickness.hasError('required')">
+                            Thickness is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div> 
+
+            <div class="row mb-1 mx-1">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Diameter (mm)</mat-label>
+                        <input matInput formControlName="diameter" [errorStateMatcher]="matcher" placeholder="Ex. 10">
+                        <mat-error *ngIf="form.diameter.hasError('required')">
+                            Diameter is <strong>required</strong>
+                        </mat-error> 
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Material Group</mat-label>
+                        <input matInput formControlName="material_group" [errorStateMatcher]="matcher" placeholder="Ex. Corten Steel">
+                        <mat-error *ngIf="form.material_group.hasError('required')">
+                            Material Group is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            
+            <div class="row mb-1 mx-1">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Standard</mat-label>
+                        <input matInput formControlName="standard" [errorStateMatcher]="matcher" placeholder="Ex. SS 125">
+                        <mat-error *ngIf="form.standard.hasError('required')">
+                            Standard is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+    
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Delivery Condition</mat-label>
+                        <input matInput formControlName="delivery_condition" [errorStateMatcher]="matcher" placeholder="Ex. Rolled">
+                        <mat-error *ngIf="form.delivery_condition.hasError('required')">
+                            Delivery Condition is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <div class="row float-right mt-auto mr-1">
+        <div class="col mr-0 pr-0 mt-2">
+            <button class="btn btn-primary" type="button" (click)="closeDialog()">Cancel</button>
+        </div>
+        <div class="col ml-0 mt-2" *ngIf="!element">
+            <button class="btn btn-primary" type="button" (click)="save()">Save</button>
+        </div>
+        <div class="col ml-0 mt-2" *ngIf="element">
+            <button class="btn btn-primary" type="button" (click)="update()">Update</button>
+        </div>
+        
+    </div>
+
+    <!-- <mat-card>
+        <mat-card-title>
+            
+        </mat-card-title>
+        <mat-card-content>
+            
+        </mat-card-content>
+
+        <mat-card-actions>
+            <button type="button" class="mx-1 btn btn-primary  login-btn" (click)="submit()">Login</button>
+        </mat-card-actions>
+
+        <mat-card-footer>
+            <div class="row login-footer mb-3">
+                <div class="col-7 ml-4 mr-0 pr-0">
+                    Have not an account yet? <a [routerLink]="['/signup']" [routerLinkActive]="['active']">Sign up</a>
+                </div>
+                <div class="col-4 ml-1 mr-0 pl-1 pr-0">
+                    <a [routerLink]="['/howItsWork']" [routerLinkActive]="['active']">Forgot Password?</a>
+                </div>
+            </div>
+        </mat-card-footer>
+    </mat-card> -->
+</div>
+
+
+
+
+

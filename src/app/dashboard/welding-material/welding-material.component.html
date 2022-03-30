@@ -1,0 +1,89 @@
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-md-2 col-lg-2 col-sm-12 mb-2">
+      <button class="btn btn-primary btn-sm mt-3" type="button" (click)="addNewMaterial()"><i class="fa fa-plus" aria-hidden="true"></i> Add Material</button>
+    </div>
+
+    <div class="col-md-10 col-lg-10 col-sm-12 ">
+      <span class="float-right">
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input>
+        </mat-form-field>
+      </span>
+    </div> 
+  </div>
+    
+    <div class="mat-elevation-z8 mb-4">
+      <div class="table-container">
+        <table mat-table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="refName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Reference name</strong>  </th>
+            <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label='refName : '> {{element.refName}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Material Name</strong></th>
+            <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label='name : '> {{element.name}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="grade">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Grade</strong>  </th>
+            <td mat-cell *matCellDef="let element" class='has_label_on_mobile' test data-label='grade : '>{{element.grade}}</td>
+          </ng-container>
+    
+          <ng-container matColumnDef="thickness">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Thickness (mm)</strong>  </th>
+            <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label='thickness : '> {{element.thickness}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="diameter">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Diameter (mm)</strong>  </th>
+            <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label='diameter : '> {{element.diameter}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="material_group">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Material Group</strong>  </th>
+            <td mat-cell *matCellDef="let element" class='has_label_on_mobile' test data-label='material_group '>{{element.material_group}}</td>
+          </ng-container>
+    
+          <ng-container matColumnDef="standard">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Standard</strong>  </th>
+            <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label='standard : '> {{element.standard}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="delivery_condition">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Delivery Condition</strong>  </th>
+            <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label='delivery_condition : '> {{element.delivery_condition}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef><strong>Action</strong></th>
+            <td mat-cell *matCellDef="let element"> 
+              <button mat-icon-button [matMenuTriggerFor]="menu" [matMenuTriggerData]="{element:element}">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+    
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+      <mat-paginator class="paginator" [pageSizeOptions]="[8, 20, 30]"></mat-paginator>
+    </div>
+
+    <mat-menu #menu="matMenu">
+      <ng-template matMenuContent let-aliasMenuItems="element">
+        <button mat-menu-item (click)="view_edit(aliasMenuItems)">
+          <mat-icon >view_list</mat-icon>
+          <span>View/ Edit</span>
+        </button> 
+        <button mat-menu-item (click)="delete(aliasMenuItems)">
+          <mat-icon>delete</mat-icon>
+          <span>Delete</span>
+        </button>
+      </ng-template>  
+    </mat-menu>
+
+</div>

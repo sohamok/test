@@ -1,0 +1,774 @@
+<div class="container-fluid">
+    <div class="card mt-3 mb-3">
+        <div class="mt-2 text-center"><h4>Machine Configuration</h4></div>
+
+        <div class="mx-4">
+            <div class="row">
+                <div class="col">
+                    <a [routerLink]="['../listofconfig']">Back</a>
+                </div>
+
+            </div>
+
+            <form [formGroup]="machineConfigForm" (keydown.enter)="configPressEnter()">
+                <div class="row ">
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <mat-form-field>
+                            <mat-label>Job Name</mat-label>
+                            <input type="text" matInput formControlName="job_name" [errorStateMatcher]="matcher" placeholder="Ex. configuration 1">
+                            <mat-error *ngIf="form.job_name.hasError('required')">
+                                Job Name is <strong>required</strong>
+                            </mat-error>
+
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <mat-form-field>
+                            <mat-label>Reference Standards</mat-label>
+                            <input type="text" matInput formControlName="ref_standards" [errorStateMatcher]="matcher" placeholder="Ex. AWS">
+                            <mat-error *ngIf="form.ref_standards.hasError('required')">
+                                Reference Standards is <strong>required</strong>
+                            </mat-error>
+
+                        </mat-form-field>
+                    </div>
+
+
+                </div>
+
+                <fieldset class="scheduler-border p-4">
+                    <legend class="scheduler-border">Welding Threshold</legend>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <mat-form-field>
+                                <mat-label>High Weld Voltage (volt)</mat-label>
+                                <input type="number" matInput formControlName="high_weld_volt_threshold" [errorStateMatcher]="matcher" placeholder="Ex. 35">
+                                <mat-error *ngIf="form.high_weld_volt_threshold.hasError('required')">
+                                    High Weld Volt Threshold is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <mat-form-field>
+                                <mat-label>Low Weld Voltage (volt)</mat-label>
+                                <input type="number" matInput formControlName="low_weld_volt_threshold" [errorStateMatcher]="matcher" placeholder="Ex. 30">
+                                <mat-error *ngIf="form.low_weld_volt_threshold.hasError('required')">
+                                    Low Weld Voltage is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <mat-form-field>
+                                <mat-label>Set Weld Voltage (volt)</mat-label>
+                                <input type="number" matInput formControlName="set_weld_volt_threshold" [errorStateMatcher]="matcher" placeholder="Ex. 32">
+                                <mat-error *ngIf="form.set_weld_volt_threshold.hasError('required')">
+                                    Set Weld Voltage is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <mat-form-field>
+                                <mat-label>High Weld Current (amp)</mat-label>
+                                <input type="number" matInput formControlName="high_weld_cur_threshold" [errorStateMatcher]="matcher" placeholder="Ex. 200">
+                                <mat-error *ngIf="form.high_weld_cur_threshold.hasError('required')">
+                                    High Weld Current is <strong>required</strong>
+                                </mat-error>
+
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <mat-form-field>
+                                <mat-label>Low Weld Current (amp)</mat-label>
+                                <input type="number" matInput formControlName="low_weld_cur_threshold" [errorStateMatcher]="matcher" placeholder="Ex. 150">
+                                <mat-error *ngIf="form.low_weld_cur_threshold.hasError('required')">
+                                    Low Weld Current is <strong>required</strong>
+                                </mat-error>
+
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <mat-form-field>
+                                <mat-label>Set Weld Current (amp)</mat-label>
+                                <input type="number" matInput formControlName="set_weld_cur_threshold" [errorStateMatcher]="matcher" placeholder="Ex. 200">
+                                <mat-error *ngIf="form.set_weld_cur_threshold.hasError('required')">
+                                    Set Weld Current is <strong>required</strong>
+                                </mat-error>
+
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+                    
+
+                    <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-12 ">
+                                <mat-form-field>
+                                    <mat-label>High Weld Gas (litre/min)</mat-label>
+                                    <input type="number" matInput formControlName="high_weld_gas_threshold" [errorStateMatcher]="matcher" placeholder="Ex. 20">
+                                    <mat-error *ngIf="form.high_weld_gas_threshold.hasError('required')">
+                                        High Weld Gas Threshold is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Low Weld Gas (litre/min)</mat-label>
+                                    <input type="number" matInput formControlName="low_weld_gas_threshold" [errorStateMatcher]="matcher" placeholder="Ex. 15">
+                                    <mat-error *ngIf="form.low_weld_gas_threshold.hasError('required')">
+                                        Low Weld Gas is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Set Weld Gas (litre/min)</mat-label>
+                                    <input type="number" matInput formControlName="set_weld_gas_threshold" [errorStateMatcher]="matcher" placeholder="Ex. 20">
+                                    <mat-error *ngIf="form.set_weld_gas_threshold.hasError('required')">
+                                        Set Weld Gas Threshold is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                    </div>
+                </fieldset>
+
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Motor Threshold</legend>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>High Motor Volt Threshold (volt)</mat-label>
+                                    <input type="number" matInput formControlName="high_motor_volt_threshold" [errorStateMatcher]="matcher" placeholder="Ex. 12">
+                                    <mat-error *ngIf="form.high_motor_volt_threshold.hasError('required')">
+                                        High Motor Volt Threshold is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Low Motor Volt Threshold (volt)</mat-label>
+                                    <input type="number" matInput formControlName="low_motor_volt_threshold" [errorStateMatcher]="matcher" placeholder="Ex. 5">
+                                    <mat-error *ngIf="form.low_motor_volt_threshold.hasError('required')">
+                                        Low Motor Voltage Threshold is <strong>required</strong>
+                                    </mat-error>
+
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Set Motor Volt Threshold (volt)</mat-label>
+                                    <input type="number" matInput formControlName="set_motor_volt_threshold" [errorStateMatcher]="matcher" placeholder="Ex. 5">
+                                    <mat-error *ngIf="form.set_motor_volt_threshold.hasError('required')">
+                                        Set Motor Voltage Threshold is <strong>required</strong>
+                                    </mat-error>
+
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>High Motor Current Threshold (amp)</mat-label>
+                                    <input type="number" matInput formControlName="high_motor_cur_threshold" [errorStateMatcher]="matcher" placeholder="Ex. 10">
+                                    <mat-error *ngIf="form.high_motor_cur_threshold.hasError('required')">
+                                        High Motor Current Threshold is <strong>required</strong>
+                                    </mat-error>
+
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Low Motor Current Threshold (amp)</mat-label>
+                                    <input type="number" matInput formControlName="low_motor_cur_threshold" [errorStateMatcher]="matcher" placeholder="Ex. 5">
+                                    <mat-error *ngIf="form.low_motor_cur_threshold.hasError('required')">
+                                        Low Motor Current Threshold is <strong>required</strong>
+                                    </mat-error>
+
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Set Motor Current Threshold (amp)</mat-label>
+                                    <input type="number" matInput formControlName="set_motor_cur_threshold" [errorStateMatcher]="matcher" placeholder="Ex. 5">
+                                    <mat-error *ngIf="form.set_motor_cur_threshold.hasError('required')">
+                                        Set Motor Current Threshold is <strong>required</strong>
+                                    </mat-error>
+
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+
+                </fieldset>
+
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Heat/ Temperature Threshold</legend>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Weld Heat Input Max (kJ/mm)</mat-label>
+                                    <input type="number" matInput formControlName="weld_heat_input_max" [errorStateMatcher]="matcher" placeholder="Ex. 1.5">
+                                    <mat-error *ngIf="form.weld_heat_input_max.hasError('required')">
+                                        Weld Heat Input Max is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <mat-form-field>
+                                        <mat-label>Weld Heat Input Min (kJ/mm)</mat-label>
+                                        <input type="number" matInput formControlName="weld_heat_input_min" [errorStateMatcher]="matcher" placeholder="Ex. 0.7">
+                                        <mat-error *ngIf="form.weld_heat_input_min.hasError('required')">
+                                            Weld Heat Input Min is <strong>required</strong>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Heat Sink Threshold (celsius)</mat-label>
+                                    <input type="number" matInput formControlName="temp_hs_thresold" [errorStateMatcher]="matcher" placeholder="Ex. 70">
+                                    <mat-error *ngIf="form.temp_hs_thresold.hasError('required')">
+                                        Heat Sink is <strong>required</strong>
+                                    </mat-error>
+
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Ambient Threshold (celsius)</mat-label>
+                                    <input type="number" matInput formControlName="temp_amb_thresold" [errorStateMatcher]="matcher" placeholder="Ex. 30">
+                                    <mat-error *ngIf="form.temp_amb_thresold.hasError('required')">
+                                        Temp Amb Thresold is <strong>required</strong>
+                                    </mat-error>
+
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Temp Thresold Old (celsius)</mat-label>
+                                    <input type="number" matInput formControlName="temp_thresold_old" [errorStateMatcher]="matcher" placeholder="Ex. 65">
+                                    <mat-error *ngIf="form.temp_thresold_old.hasError('required')">
+                                        Temp Thresold Old is <strong>required</strong>
+                                    </mat-error>
+
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+
+                </fieldset>
+
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Wire Speed Threshold</legend>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Wire Speed High (meter/min)</mat-label>
+                                    <input type="number" matInput formControlName="wire_speed_high_threshold" [errorStateMatcher]="matcher" placeholder="Ex. 15">
+                                    <mat-error *ngIf="form.wire_speed_high_threshold.hasError('required')">
+                                        Wire Speed High is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Wire Speed Low (meter/min)</mat-label>
+                                    <input type="number" matInput formControlName="wire_speed_low_threshold" [errorStateMatcher]="matcher" placeholder="Ex. 10">
+                                    <mat-error *ngIf="form.wire_speed_low_threshold.hasError('required')">
+                                        Wire Speed Low is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                </fieldset>
+
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Travel Speed Threshold</legend>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <mat-form-field>
+                                <mat-label>Travel Speed Max (mm/min)</mat-label>
+                                <input type="number" matInput formControlName="travel_speed_max" [errorStateMatcher]="matcher" placeholder="Ex. 350">
+                                <mat-error *ngIf="form.travel_speed_max.hasError('required')">
+                                    Travel Speed Max is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <mat-form-field>
+                                <mat-label>Travel Speed Min (mm/min)</mat-label>
+                                <input type="number" matInput formControlName="travel_speed_min" [errorStateMatcher]="matcher" placeholder="Ex. 300">
+                                <mat-error *ngIf="form.travel_speed_min.hasError('required')">
+                                    TravelSpeed Min is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Miscellaneous</legend>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Event Threshold Duration (min)</mat-label>
+                                    <input type="number" matInput formControlName="event_threshold_dur" [errorStateMatcher]="matcher" placeholder="Ex. 60">
+                                    <mat-error *ngIf="form.event_threshold_dur.hasError('required')">
+                                        Event Threshold Duration is <strong>required</strong>
+                                    </mat-error>
+
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Part Threshold (min)</mat-label>
+                                    <input type="number" matInput formControlName="part_threshold" [errorStateMatcher]="matcher" placeholder="Ex. 60">
+                                    <mat-error *ngIf="form.part_threshold.hasError('required')">
+                                        Part Threshold is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Target Arc Time (hr/shift)</mat-label>
+                                    <input type="number"matInput formControlName="target_arc_time" [errorStateMatcher]="matcher" placeholder="Ex. 3">
+                                    <mat-error *ngIf="form.target_arc_time.hasError('required')">
+                                        Target Arc Time is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Target Weld Deposit (Kg/hr)</mat-label>
+                                    <input type="number" matInput formControlName="target_weld_deposit" [errorStateMatcher]="matcher" placeholder="Ex. 5">
+                                    <mat-error *ngIf="form.target_weld_deposit.hasError('required')">
+                                        Target Weld Deposit is <strong>required</strong>
+                                    </mat-error>
+
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label style="font-size: smaller;">Target Weld Cost (Rs/Kg)</mat-label>
+                                    <input type="number" matInput formControlName="target_weld_cost" [errorStateMatcher]="matcher" placeholder="Ex. 20">
+                                    <mat-error *ngIf="form.target_weld_cost.hasError('required')">
+                                        Target Weld Cost is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Current Polarity (AC/DC)</mat-label>
+                                    <input matInput formControlName="current_polarity" [errorStateMatcher]="matcher" placeholder="Ex. DC+">
+                                    <mat-error *ngIf="form.current_polarity.hasError('required')">
+                                        Current Polarity is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                </fieldset>
+
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Shielding Gas</legend>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Shielding Gas</mat-label>
+                                    <mat-select formControlName="sg_id" name="state" (selectionChange)="shieldingGas($event.value)">
+                                        <mat-option *ngFor="let state of shieldingGasArray" [value]="state.sg_id">
+                                            {{ state.refName }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="form.sg_id.hasError('required')">
+                                        Shielding Gas is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12" *ngIf="shieldingGasVar">
+                                <mat-form-field>
+                                    <mat-label>Shielding Gas Name</mat-label>
+                                    <input id="shielding_gas_name"  type="text" matInput readonly>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12" *ngIf="shieldingGasVar">
+                                <mat-form-field>
+                                    <mat-label>Shielding Gas Group</mat-label>
+                                    <input id="shielding_gas_group"  type="text" matInput readonly>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12" *ngIf="shieldingGasVar">
+                                <mat-form-field>
+                                    <mat-label>Purging Gas Name</mat-label>
+                                    <input id="purging_gas_name"  type="text" matInput readonly>
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+
+                        <div class="row" *ngIf="shieldingGasVar">
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Purging Gas Group</mat-label>
+                                    <input id="purging_gas_group"  type="text" matInput readonly>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                </fieldset>
+
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Filler Material</legend>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Filler Material</mat-label>
+                                    <mat-select formControlName="fm_id"  name="state" (selectionChange)="fillerMaterial($event.value)">
+                                        <mat-option *ngFor="let state of fillerMaterialArray" [value]="state.fm_id">
+                                            {{ state.refName }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="form.fm_id.hasError('required')">
+                                        Filler Material is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12" *ngIf="fillerMaterialVar">
+                                <mat-form-field>
+                                    <mat-label>Trade Name</mat-label>
+                                    <input id="trade_name"  type="text" matInput readonly>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12" *ngIf="fillerMaterialVar">
+                                <mat-form-field>
+                                    <mat-label>Group</mat-label>
+                                    <input id="fm_group"  type="text" matInput readonly>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12" *ngIf="fillerMaterialVar">
+                                <mat-form-field>
+                                    <mat-label>Classification</mat-label>
+                                    <input id="classification"  type="text" matInput readonly>
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+
+                        <div class="row" *ngIf="fillerMaterialVar">
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Wire Diameter</mat-label>
+                                    <input id="wire_dia"  type="text" matInput readonly>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Wire Density</mat-label>
+                                    <input id="wire_density"  type="text" matInput readonly>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Wire Weight Per Length</mat-label>
+                                    <input id="wire_weight_per_length"  type="text" matInput readonly>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                </fieldset>
+
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Welding Material</legend>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Welding Material</mat-label>
+                                    <mat-select formControlName="wm_id" name="state" (selectionChange)="weldingMaterial($event.value)">
+                                        <mat-option *ngFor="let state of weldingMaterialArray" [value]="state.wm_id">
+                                            {{ state.refName }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="form.wm_id.hasError('required')">
+                                        Welding Material is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12" *ngIf="weldingMaterialVar">
+                                <mat-form-field>
+                                    <mat-label>Name</mat-label>
+                                    <input id="name"  type="text" matInput readonly>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12" *ngIf="weldingMaterialVar">
+                                <mat-form-field>
+                                    <mat-label>Grade</mat-label>
+                                    <input id="grade"  type="text" matInput readonly>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12" *ngIf="weldingMaterialVar">
+                                <mat-form-field>
+                                    <mat-label>Thickness</mat-label>
+                                    <input id="thickness"  type="text" matInput readonly>
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+
+                        <div class="row" *ngIf="weldingMaterialVar">
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Diameter</mat-label>
+                                    <input id="diameter"  type="text" matInput readonly>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Material Group</mat-label>
+                                    <input id="material_group"  type="text" matInput readonly>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Standard</mat-label>
+                                    <input id="standard"  type="text" matInput readonly>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Delivery Condition</mat-label>
+                                    <input id="delivery_condition"  type="text" matInput readonly>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                 </fieldset>
+
+                 <fieldset class="scheduler-border">
+                     <legend class="scheduler-border">Joint Design</legend>
+                         <div class="row">
+                             <div class="col-lg-3 col-md-6 col-sm-12">
+                                 <mat-form-field>
+                                     <mat-label>Joint Design</mat-label>
+                                     <mat-select formControlName="jd_id" name="state" (selectionChange)="jointDesign($event.value)">
+                                         <mat-option *ngFor="let state of jointDesignArray" [value]="state.jd_id">
+                                             {{ state.refName }}
+                                         </mat-option>
+                                     </mat-select>
+                                     <mat-error *ngIf="form.jd_id.hasError('required')">
+                                         Joint Design is <strong>required</strong>
+                                     </mat-error>
+                                 </mat-form-field>
+                             </div>
+
+                             <div class="col-lg-3 col-md-6 col-sm-12" *ngIf="jointDesignVar">
+                                 <mat-form-field>
+                                     <mat-label>Joint Type</mat-label>
+                                     <input id="joint_type"  type="text" matInput readonly>
+                                 </mat-form-field>
+                             </div>
+
+                             <div class="col-lg-3 col-md-6 col-sm-12" *ngIf="jointDesignVar">
+                                 <mat-form-field>
+                                     <mat-label>Product Type</mat-label>
+                                     <input id="product_type"  type="text" matInput readonly>
+                                 </mat-form-field>
+                             </div>
+
+                             <!-- <div class="col-lg-3 col-md-6 col-sm-12" *ngIf="jointDesignVar">
+                                 <mat-form-field>
+                                     <mat-label>Joint Design Diagram</mat-label>
+                                     <input id="joint_design_diagram"  type="text" matInput readonly>
+                                 </mat-form-field>
+                             </div> -->
+
+                         </div>
+
+                         <div class="row" *ngIf="jointDesignVar">
+                             <div class="col-lg-3 col-md-6 col-sm-12">
+                                 <mat-form-field>
+                                     <mat-label>Backing</mat-label>
+                                     <input id="backing"  type="text" matInput readonly>
+                                 </mat-form-field>
+                             </div>
+
+                             <div class="col-lg-3 col-md-6 col-sm-12">
+                                 <mat-form-field>
+                                     <mat-label>Sides</mat-label>
+                                     <input id="sides"  type="text" matInput readonly>
+                                 </mat-form-field>
+                             </div>
+
+                             <div class="col-lg-3 col-md-6 col-sm-12">
+                                 <mat-form-field>
+                                     <mat-label>Layers</mat-label>
+                                     <input id="layers"  type="text" matInput readonly>
+                                 </mat-form-field>
+                             </div>
+
+                             <div class="col-lg-3 col-md-6 col-sm-12">
+                                 <mat-form-field>
+                                     <mat-label>Welding Position</mat-label>
+                                     <input id="welding_position"  type="text" matInput readonly>
+                                 </mat-form-field>
+                             </div>
+                         </div>
+
+                         <div class="row" *ngIf="jointDesignVar">
+                             <div class="col-lg-3 col-md-6 col-sm-12">
+                                 <mat-form-field>
+                                     <mat-label>Throat Thickness</mat-label>
+                                     <input id="throat_thickness"  type="text" matInput readonly>
+                                 </mat-form-field>
+                             </div>
+
+                             <div class="col-lg-3 col-md-6 col-sm-12">
+                                 <mat-form-field>
+                                     <mat-label>Torch Angle</mat-label>
+                                     <input id="torch_angle"  type="text" matInput readonly>
+                                 </mat-form-field>
+                             </div>
+
+                             <div class="col-lg-3 col-md-6 col-sm-12">
+                                 <mat-form-field>
+                                     <mat-label>Stick Out Length</mat-label>
+                                     <input id="stick_out_length"  type="text" matInput readonly>
+                                 </mat-form-field>
+                             </div>
+
+                             <div class="col-lg-3 col-md-6 col-sm-12">
+                                 <mat-form-field>
+                                     <mat-label>Technique</mat-label>
+                                     <input id="technique"  type="text" matInput readonly>
+                                 </mat-form-field>
+                             </div>
+                         </div>
+                 </fieldset>
+
+                 <fieldset class="scheduler-border">
+                     <legend class="scheduler-border">Welding Sequence</legend>
+                         <div class="row">
+                             <div class="col-lg-3 col-md-6 col-sm-12">
+                                 <mat-form-field>
+                                     <mat-label>Welding Sequence</mat-label>
+                                     <mat-select formControlName="ws_id" name="state" (selectionChange)="weldingSequence($event.value)">
+                                         <mat-option *ngFor="let state of weldingSequenceArray" [value]="state.ws_id">
+                                             {{ state.refName }}
+                                         </mat-option>
+                                     </mat-select>
+                                     <mat-error *ngIf="form.ws_id.hasError('required')">
+                                         Welding Sequence is <strong>required</strong>
+                                     </mat-error>
+                                 </mat-form-field>
+                             </div>
+
+                             <div class="col-lg-3 col-md-6 col-sm-12" *ngIf="weldingSequenceVar">
+                                 <mat-form-field>
+                                     <mat-label>Back Gouging</mat-label>
+                                     <input id="back_gouging"  type="text" matInput readonly>
+                                 </mat-form-field>
+                             </div>
+
+                             <div class="col-lg-3 col-md-6 col-sm-12" *ngIf="weldingSequenceVar">
+                                 <mat-form-field>
+                                     <mat-label>Track Welding Proc.</mat-label>
+                                     <input id="track_welding_proc"  type="text" matInput readonly>
+                                 </mat-form-field>
+                             </div>
+
+                             <div class="col-lg-3 col-md-6 col-sm-12" *ngIf="weldingSequenceVar">
+                                 <mat-form-field>
+                                     <mat-label>Mode Of Metal Transfer</mat-label>
+                                     <input id="mode_of_metal_transfer"  type="text" matInput readonly>
+                                 </mat-form-field>
+                             </div>
+
+                         </div>
+
+                         <div class="row" *ngIf="weldingSequenceVar">
+                             <div class="col-lg-3 col-md-6 col-sm-12">
+                                 <mat-form-field>
+                                     <mat-label>Flux Designation</mat-label>
+                                     <input id="flux_designation"  type="text" matInput readonly>
+                                 </mat-form-field>
+                             </div>
+
+                             <div class="col-lg-3 col-md-6 col-sm-12">
+                                 <mat-form-field>
+                                     <mat-label>Joint Preparation And Cleaning</mat-label>
+                                     <input id="joint_preparation_and_cleaning"  type="text" matInput readonly>
+                                 </mat-form-field>
+                             </div>
+
+                             <div class="col-lg-3 col-md-6 col-sm-12">
+                                 <mat-form-field>
+                                     <mat-label>Tungsten Electrode</mat-label>
+                                     <input id="tungsten_electrode"  type="text" matInput readonly>
+                                 </mat-form-field>
+                             </div>
+
+                             <!-- <div class="col-lg-3 col-md-6 col-sm-12">
+                                 <mat-form-field>
+                                     <mat-label>Welding Seq Diagram</mat-label>
+                                     <input id="welding_seq_diagram"  type="text" matInput readonly>
+                                 </mat-form-field>
+                             </div> -->
+                         </div>
+
+                 </fieldset>
+
+            </form>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col mr-4" *ngIf="!mConfigData">
+                <button class="btn btn-primary float-right" type="button" (click)="save()">Save</button>
+            </div>
+
+            <div class="col mr-4" *ngIf="mConfigData">
+                <button class="btn btn-primary float-right" type="button" (click)="update()">Update</button>
+            </div>
+        </div>
+    </div>
+
+
+</div>

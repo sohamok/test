@@ -1,0 +1,42 @@
+// mat-form-field.mat-form-field {
+//     font-size: 14px;
+//     font-weight: bold;
+// }
+
+// .card-mod .mat-form-field-wrapper {
+//     margin-bottom: -1.25em !important;
+// }
+
+// mat-form-field.mat-form-field {
+//     font-size: 14px;
+//     font-weight: bold;
+//     .mat-form-field-wrapper {
+//         padding-bottom: 0;
+//         //margin-bottom: -1.25em !important;
+//     }
+// }
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-color {
+    color: #269ffb;
+}
+
+.chart-title {
+    color: #030e9f;
+    font-size: 18px;
+}
+
+.button-size {
+    font-size: 12 px;
+    height: 50px;
+    width: 120px;
+}
+
+.card-size {
+    height: 45px;
+    text-align: center;
+}

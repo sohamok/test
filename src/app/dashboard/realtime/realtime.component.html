@@ -1,0 +1,354 @@
+<div class="bg-light">
+    <div class="container-fluid">
+        <br>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <mat-card class="mat-elevation-z8">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-4">
+                                    <mat-card class="mat-elevation-z2">
+                                        <div class="row">
+                                            <div class="col-7 center" style="padding-top: 15px;">
+                                                <form [formGroup]="hwForm">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline">
+                                                        <mat-label>Welding Machines</mat-label>
+                                                        <mat-select id="hwid" formControlName="hardware" (selectionChange)="onHwChange($event)" >
+                                                            <mat-option *ngFor="let hw of hardware" [value]="hw" >{{hw.name}}</mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </form>
+                                            </div>
+                                            <div class="col-5 center">
+                                                <button class="btn btn-primary button-size" (click)="thresholdSettings()">Settings</button>
+                                            </div>
+                                        </div>
+                                    </mat-card>
+                                </div>
+                                <div class="col-4">
+                                    <mat-card class="mat-elevation-z2" *ngIf="ambtemp" style="height: 100%;">
+                                            <div class="center"  style="padding-top: 15px;">
+                                                <!-- <h3>Ambient Temp: <br>&nbsp;{{ambtemp}}°C</h3> -->
+                                                <div style="text-align: center;">
+                                                    Ambient Temp
+                                                    <br>
+                                                    <h2 class="text-color">{{ambtemp}}°C</h2>
+                                                </div>
+                                            </div>
+                                    </mat-card>
+                                </div>
+                                <div class="col-4">
+                                    <mat-card class="mat-elevation-z2" *ngIf="machinetemp" style="height: 100%;">
+                                            <div class="center"  style="padding-top: 15px;">
+                                                <div style="text-align: center;">
+                                                    Machine Temp
+                                                    <br>
+                                                    <h2 class="text-color">{{machinetemp}}°C</h2>
+                                                </div>
+                                            </div>
+                                    </mat-card>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <mat-card class="mat-elevation-z8">
+                        <mat-card-title class="chart-title">Current Monitoring</mat-card-title>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-2">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <mat-card class="card-size mat-elevation-z2">
+                                                    <div class="row">
+                                                        <div class="col-3"></div>
+                                                        <div class="col-3">
+                                                            <h6>UCL: </h6>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <h6 class="text-color">{{currentUcl}}</h6>
+                                                        </div>
+                                                        <div class="col-3"></div>
+                                                    </div>
+                                                </mat-card>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <mat-card class="card-size mat-elevation-z2">
+                                                    <div class="row">
+                                                        <div class="col-3"></div>
+                                                        <div class="col-3">
+                                                            <h6>SET: </h6>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <h6 class="text-color">{{currentSet}}</h6>
+                                                        </div>
+                                                        <div class="col-3"></div>
+                                                    </div>
+                                                </mat-card>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <mat-card class="card-size mat-elevation-z2">
+                                                    <div class="row">
+                                                        <div class="col-3"></div>
+                                                        <div class="col-3">
+                                                            <h6>LCL: </h6>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <h6 class="text-color">{{currentLcl}}</h6>
+                                                        </div>
+                                                        <div class="col-3"></div>
+                                                    </div>
+                                                </mat-card>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <mat-card class="card-size mat-elevation-z2">
+                                                    <div class="row">
+                                                        <div class="col-3"></div>
+                                                        <div class="col-3">
+                                                            <h6>Amps:</h6>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <h6 class="text-color">&nbsp;&nbsp;&nbsp;{{currentValue}}</h6>
+                                                        </div>
+                                                        <div class="col-3"></div>
+                                                    </div>
+                                                </mat-card>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-10">
+                                    <apx-chart #chartcurr
+                                    [series]="current.series"
+                                    [chart]="current.chart"
+                                    [xaxis]="current.xaxis"
+                                    [yaxis]="current.yaxis"
+                                    [dataLabels]="current.dataLabels"
+                                    [stroke]="current.stroke"
+                                    [markers]="current.markers"
+                                    [legend]="current.legend"
+                                    [annotations]="current.annotations"
+                                ></apx-chart>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card> 
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <mat-card class="mat-elevation-z8">
+                        <mat-card-title class="chart-title">Voltage Monitoring</mat-card-title>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-2">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <mat-card class="card-size mat-elevation-z2">
+                                                    <div class="row">
+                                                        <div class="col-3"></div>
+                                                        <div class="col-3">
+                                                            <h6>UCL: </h6>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <h6 class="text-color">{{voltageUcl}}</h6>
+                                                        </div>
+                                                        <div class="col-3"></div>
+                                                    </div>
+                                                </mat-card>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <mat-card class="card-size mat-elevation-z2">
+                                                    <div class="row">
+                                                        <div class="col-3"></div>
+                                                        <div class="col-3">
+                                                            <h6>SET: </h6>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <h6 class="text-color">{{voltageSet}}</h6>
+                                                        </div>
+                                                        <div class="col-3"></div>
+                                                    </div>
+                                                </mat-card>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <mat-card class="card-size mat-elevation-z2">
+                                                    <div class="row">
+                                                        <div class="col-3"></div>
+                                                        <div class="col-3">
+                                                            <h6>LCL: </h6>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <h6 class="text-color">{{voltageLcl}}</h6>
+                                                        </div>
+                                                        <div class="col-3"></div>
+                                                    </div>
+                                                </mat-card>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <mat-card class="card-size mat-elevation-z2">
+                                                    <div class="row">
+                                                        <div class="col-3"></div>
+                                                        <div class="col-3">
+                                                            <h6>Volts:</h6>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <h6 class="text-color">&nbsp;&nbsp;{{voltageValue}}</h6>
+                                                        </div>
+                                                        <div class="col-3"></div>
+                                                    </div>
+                                                </mat-card>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-10">
+                                    <apx-chart #chartvolt
+                                        [series]="voltage.series"
+                                        [chart]="voltage.chart"
+                                        [xaxis]="voltage.xaxis"
+                                        [yaxis]="voltage.yaxis"
+                                        [dataLabels]="voltage.dataLabels"
+                                        [stroke]="voltage.stroke"
+                                        [markers]="voltage.markers"
+                                        [legend]="voltage.legend"
+                                        [annotations]="voltage.annotations"
+                                    ></apx-chart>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card> 
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <mat-card class="mat-elevation-z8">
+                        <mat-card-title class="chart-title">Gas Flow Rate Monitoring</mat-card-title>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-2">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <mat-card class="card-size mat-elevation-z2">
+                                                    <div class="row">
+                                                        <div class="col-3"></div>
+                                                        <div class="col-3">
+                                                            <h6>UCL: </h6>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <h6 class="text-color">{{gasFRUcl}}</h6>
+                                                        </div>
+                                                        <div class="col-3"></div>
+                                                    </div>
+                                                </mat-card>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <mat-card class="card-size mat-elevation-z2">
+                                                    <div class="row">
+                                                        <div class="col-3"></div>
+                                                        <div class="col-3">
+                                                            <h6>SET: </h6>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <h6 class="text-color">{{gasFRSet}}</h6>
+                                                        </div>
+                                                        <div class="col-3"></div>
+                                                    </div>
+                                                </mat-card>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <mat-card class="card-size mat-elevation-z2">
+                                                    <div class="row">
+                                                        <div class="col-3"></div>
+                                                        <div class="col-3">
+                                                            <h6>LCL: </h6>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <h6 class="text-color">{{gasFRLcl}}</h6>
+                                                        </div>
+                                                        <div class="col-3"></div>
+                                                    </div>
+                                                </mat-card>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <mat-card class="card-size mat-elevation-z2">
+                                                    <div class="row">
+                                                        <div class="col-3"></div>
+                                                        <div class="col-3">
+                                                            <h6>L/Min:</h6>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <h6 class="text-color">&nbsp;&nbsp;&nbsp;{{gasFRValue}}</h6>
+                                                        </div>
+                                                        <div class="col-3"></div>
+                                                    </div>
+                                                </mat-card>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-10">
+                                    <apx-chart #chartgas
+                                        [series]="gasFR.series"
+                                        [chart]="gasFR.chart"
+                                        [xaxis]="gasFR.xaxis"
+                                        [yaxis]="gasFR.yaxis"
+                                        [dataLabels]="gasFR.dataLabels"
+                                        [stroke]="gasFR.stroke"
+                                        [markers]="gasFR.markers"
+                                        [legend]="gasFR.legend"
+                                        [annotations]="gasFR.annotations"
+                                    ></apx-chart>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card> 
+                </div>
+            </div>
+        </div>
+        <br>  
+    </div>
+</div>

@@ -1,0 +1,277 @@
+
+
+<div class="container-fluid">
+    <div class="card mt-3 mb-3">
+        <div class="mt-2 text-center"><h4>Machine Component Specification</h4></div>
+
+        <div class="mx-4">
+            <div class="row">
+                <div class="col">
+                    <a [routerLink]="['../listofspec']">Back</a>
+                </div>
+
+            </div>
+
+            <form [formGroup]="machineComponentSpecForm" (keydown.enter)="specPressEnter()">
+                <div class="row ">
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <mat-form-field>
+                            <mat-label>Specification Name</mat-label>
+                            <input type="text" matInput formControlName="specs_name" [errorStateMatcher]="matcher" placeholder="Ex. Specification 1">
+                            <mat-error *ngIf="form.specs_name.hasError('required')">
+                                Specification Name is <strong>required</strong>
+                            </mat-error>
+
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <mat-form-field>
+                            <mat-label>Roller Diameter (mm)</mat-label>
+                            <input type="text" matInput formControlName="roller_dia" [errorStateMatcher]="matcher" placeholder="Ex. 300.2">
+                            <mat-error *ngIf="form.roller_dia.hasError('required')">
+                                Roller Diameter is <strong>required</strong>
+                            </mat-error>
+
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <mat-form-field>
+                            <mat-label>Energy Cost</mat-label>
+                            <input type="text" matInput formControlName="energy_cost" [errorStateMatcher]="matcher" placeholder="Ex. 10">
+                            <mat-error *ngIf="form.energy_cost.hasError('required')">
+                                Energy Cost is <strong>required</strong>
+                            </mat-error>
+
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <mat-form-field>
+                            <mat-label>Performance</mat-label>
+                            <input type="text" matInput formControlName="performance" [errorStateMatcher]="matcher" placeholder="Ex. 0.8 (between 0 and 1)">
+                            <mat-error *ngIf="form.performance.hasError('required')">
+                                Performance is <strong>required</strong>
+                            </mat-error>
+
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <fieldset class="scheduler-border p-4">
+                    <legend class="scheduler-border">Wire</legend>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <mat-form-field>
+                                <mat-label>Wire Diameter (mm)</mat-label>
+                                <input type="number" matInput formControlName="wire_dia" [errorStateMatcher]="matcher" placeholder="Ex. 2">
+                                <mat-error *ngIf="form.wire_dia.hasError('required')">
+                                    Wire Diameter is <strong>required</strong>
+                                </mat-error>
+
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <mat-form-field>
+                                <mat-label>Wire Density (Kg/m3)</mat-label>
+                                <input type="number" matInput formControlName="wire_density" [errorStateMatcher]="matcher" placeholder="Ex. 500">
+                                <mat-error *ngIf="form.wire_density.hasError('required')">
+                                    Wire Density is <strong>required</strong>
+                                </mat-error>
+
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <mat-form-field>
+                                <mat-label>Wire Weight Per Length (Kg/m)</mat-label>
+                                <input type="number" matInput formControlName="wire_weight_per_length" [errorStateMatcher]="matcher" placeholder="Ex. 0.07">
+                                <mat-error *ngIf="form.wire_weight_per_length.hasError('required')">
+                                    Wire Weight Per Length is <strong>required</strong>
+                                </mat-error>
+
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <mat-form-field>
+                                <mat-label>Wire Cost (Rs/Kg)</mat-label>
+                                <input type="number" matInput formControlName="wire_cost" [errorStateMatcher]="matcher" placeholder="Ex. 100">
+                                <mat-error *ngIf="form.wire_cost.hasError('required')">
+                                    Wire Cost is <strong>required</strong>
+                                </mat-error>
+
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Gas</legend>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Co2 Gas Cost (Rs/litre)</mat-label>
+                                    <input type="number" matInput formControlName="co2_gas_cost" [errorStateMatcher]="matcher" placeholder="Ex. 50">
+                                    <mat-error *ngIf="form.co2_gas_cost.hasError('required')">
+                                        Co2 Gas Cost is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Argon + Co2 Gas Cost (Rs/litre)</mat-label>
+                                    <input type="number" matInput formControlName="ar_co2_gas_cost" [errorStateMatcher]="matcher" placeholder="Ex. 100">
+                                    <mat-error *ngIf="form.ar_co2_gas_cost.hasError('required')">
+                                        Argon Co2 Gas Cost is <strong>required</strong>
+                                    </mat-error>
+
+                                </mat-form-field>
+                            </div>
+                        </div>
+                </fieldset>
+
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Nozzle</legend>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Nozzle Cost (Rs)</mat-label>
+                                    <input type="number" matInput formControlName="nozzle_cost" [errorStateMatcher]="matcher" placeholder="Ex. 50">
+                                    <mat-error *ngIf="form.nozzle_cost.hasError('required')">
+                                        Nozzle Cost is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Nozzle Life (hr)</mat-label>
+                                    <input type="number" matInput formControlName="nozzle_life" [errorStateMatcher]="matcher" placeholder="Ex. 5">
+                                    <mat-error *ngIf="form.nozzle_life.hasError('required')">
+                                        Nozzle Life is <strong>required</strong>
+                                    </mat-error>
+
+                                </mat-form-field>
+                            </div>
+                        </div>
+                </fieldset>
+
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Contact</legend>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Contact Tip Cost (Rs)</mat-label>
+                                    <input type="number" matInput formControlName="contact_tip_cost" [errorStateMatcher]="matcher" placeholder="Ex. 50">
+                                    <mat-error *ngIf="form.contact_tip_cost.hasError('required')">
+                                        Contact Tip Cost is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Contact Tip Life (hr)</mat-label>
+                                    <input type="number" matInput formControlName="contact_tip_life" [errorStateMatcher]="matcher" placeholder="Ex. 5">
+                                    <mat-error *ngIf="form.contact_tip_life.hasError('required')">
+                                        Contact Tip Life is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                </fieldset>
+
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Orifice</legend>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Orifice Cost (Rs)</mat-label>
+                                    <input type="number" matInput formControlName="orifice_cost" [errorStateMatcher]="matcher" placeholder="Ex. 50">
+                                    <mat-error *ngIf="form.orifice_cost.hasError('required')">
+                                        Contact Tip Cost is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Orifice Life (hr)</mat-label>
+                                    <input type="number" matInput formControlName="orifice_life" [errorStateMatcher]="matcher" placeholder="Ex. 5">
+                                    <mat-error *ngIf="form.orifice_life.hasError('required')">
+                                        Orifice Life is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                </fieldset>
+
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Cleanner</legend>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Cleaning Gel Cost (Rs)</mat-label>
+                                    <input type="number" matInput formControlName="cleaning_gel_cost" [errorStateMatcher]="matcher" placeholder="Ex. 50">
+                                    <mat-error *ngIf="form.cleaning_gel_cost.hasError('required')">
+                                        Cleaning Gel Cost is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Clean Gel Consumption (Kg/sec)</mat-label>
+                                    <input type="number" matInput formControlName="clean_gel_consumption" [errorStateMatcher]="matcher" placeholder="Ex. 0.05">
+                                    <mat-error *ngIf="form.clean_gel_consumption.hasError('required')">
+                                        Clean Gel Consumption is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                </fieldset>
+
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Efficiency</legend>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Machine Effiency</mat-label>
+                                    <input type="number" matInput formControlName="weld_efficiency" [errorStateMatcher]="matcher" placeholder="Ex. 0.6 (between 0 and 1)">
+                                    <mat-error *ngIf="form.weld_efficiency.hasError('required')">
+                                        Machine Effiency is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Power Factor</mat-label>
+                                    <input type="number" matInput formControlName="power_efficiency" [errorStateMatcher]="matcher" placeholder="Ex. 0.8 (between 0 and 1)">
+                                    <mat-error *ngIf="form.power_efficiency.hasError('required')">
+                                        Power Factor is <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                </fieldset>
+            </form>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col mr-4" *ngIf="!mComSpecData">
+                <button class="btn btn-primary float-right" type="button" (click)="save()">Save</button>
+            </div>
+
+            <div class="col mr-4" *ngIf="mComSpecData">
+                <button class="btn btn-primary float-right" type="button" (click)="update()">Update</button>
+            </div>
+        </div>
+    </div>
+
+
+</div>

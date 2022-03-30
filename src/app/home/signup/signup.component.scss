@@ -1,0 +1,63 @@
+host {
+    display: flex;
+    justify-content: center;
+    margin: 100px 0px;
+  }
+
+  .mat-form-field {
+    width: 100%;
+    min-width: 300px;
+  }
+
+  mat-card-title,
+  mat-card-content {
+    display: flex;
+    justify-content: center;
+  }
+
+  mat-card-title {
+    margin-top: 100px;
+  }
+
+  // mat-card{
+  //   width: 30vw;
+  //   height: 50vh;
+  //   // justify-content: center;
+  // }
+
+  .error {
+    padding: 16px;
+    width: 300px;
+    color: white;
+    background-color: red;
+  }
+
+  // .button {
+  //   display: flex;
+  //   justify-content: flex-end;
+  // }
+
+  .login-form-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: desaturate($color: #4e5250, $amount: 0);
+  }
+
+  .login-btn {
+    width: 312px;
+   }
+
+   .login-footer{
+     font-size: x-small;
+   }
+
+   .Terms-of-Use-Privacy-Policy-checkbox{
+    font-size: small;  
+   }
+
+   .passError{
+    color: #0f7513; /* green */
+   }

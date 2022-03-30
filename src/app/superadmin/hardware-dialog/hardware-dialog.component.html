@@ -1,0 +1,84 @@
+<div class="container-fluid mx-1 p-1 my-3">
+    <div class="m-3 text-center"><h4> New Hardware</h4></div>
+    <div class="mt-4 mx-0 px-0">
+        <form [formGroup]="hardwareForm" (keydown.enter)="hwPressEnter()"> 
+            <div class="row mb-1 mx-1">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Hardware Name</mat-label>
+                        <input matInput formControlName="hardware_name" [errorStateMatcher]="matcher" placeholder="Ex. ">
+                        <mat-error *ngIf="form.hardware_name.hasError('required')">
+                            Hardware Name is <strong>required</strong>
+                        </mat-error>  
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row mb-1 mx-1">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>IMEI No.</mat-label>
+                        <input matInput formControlName="hardware_id" [errorStateMatcher]="matcher" placeholder="Ex. " >
+                        <mat-error *ngIf="form.hardware_id.hasError('required')">
+                            IMEI No. is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Warrenty Expiry Date</mat-label>
+                        <!-- <input matInput formControlName="w_expire_date" [errorStateMatcher]="matcher" placeholder="Ex. "  matDatepicker> -->
+                        <input matInput [matDatepicker]="w_expire_date" formControlName="w_expire_date" [errorStateMatcher]="matcher" placeholder="Ex. ">
+                        <mat-datepicker-toggle matSuffix [for]="w_expire_date"></mat-datepicker-toggle>
+                        <mat-datepicker #w_expire_date></mat-datepicker> 
+
+                        <mat-error *ngIf="form.w_expire_date.hasError('required')">
+                            Warrenty Expiry Date is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row mb-1 mx-1">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Organization Name</mat-label>
+                        <mat-select formControlName="orgid" >
+                            <mat-option *ngFor="let orgid of organization" [value]="orgid">{{orgid.name}}</mat-option>
+                        </mat-select>
+                        <!-- <mat-error *ngIf="form.orgid.hasError('required')">
+                            Type is <strong>required</strong>
+                        </mat-error> -->
+                    </mat-form-field>
+                </div>
+
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Status</mat-label>
+                        <mat-select formControlName="status">
+                            <mat-option *ngFor="let st of status" [value]="st">{{st}}</mat-option>
+                        </mat-select>
+                        
+                    </mat-form-field>
+                </div>
+
+            </div> 
+
+        </form>
+    </div>
+    
+    <div class="row float-right mt-auto mr-1">
+        <div class="col mr-0 pr-0">
+            <button class="btn btn-primary" type="button" (click)="closeDialog()">Cancel</button>
+        </div>
+        <div class="col ml-0" *ngIf="!element">
+            <button class="btn btn-primary" type="button" (click)="save()">Save</button>
+        </div>
+        <div class="col ml-0" *ngIf="element">
+            <button class="btn btn-primary" type="button" (click)="update()">Update</button>
+        </div>
+        
+    </div>
+
+</div>

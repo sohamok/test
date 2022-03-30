@@ -1,0 +1,59 @@
+<header>
+    <app-homenav></app-homenav>
+</header>
+
+<div class="login-form-flex">
+
+    <mat-card>
+        <mat-card-title>
+            <div class="mt-3">Admin Login</div>
+        </mat-card-title>
+
+        <mat-card-subtitle>
+            <div class="mt-3 text-center" style="color: red;"><strong>{{errorMsg}}</strong></div>
+        </mat-card-subtitle>
+        
+        <mat-card-content>
+            <form [formGroup]="logInAdminForm"  (keydown.enter)="submit()">    
+            <p>
+                <mat-form-field>
+                    <mat-label>Username</mat-label>
+                    <input matInput formControlName="username" [errorStateMatcher]="matcher" placeholder="Enter your username">
+                    <mat-error *ngIf="form.username.hasError('required')">
+                        Username is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+            </p>
+    
+            <p>
+                <mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" [errorStateMatcher]="matcher" placeholder="Ex. Password@123">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="form.password.hasError('required')">
+                        Password is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </p>
+        </form>
+        </mat-card-content>
+
+        <mat-card-actions>
+            <button type="button" class="mx-1 btn btn-primary  login-btn"  (click)="submit()">Login</button>
+        </mat-card-actions>
+
+        <mat-card-footer>
+            <div class="row login-footer mb-3">
+                <div class="col-7 ml-4 mr-0 pr-0">
+                    <b>Back to User Login? </b> <a [routerLink]="['/login']" [routerLinkActive]="['active']"><b>Click Here</b></a>
+                </div>
+                <div class="col-4 ml-1 mr-0 pl-1 pr-0">
+                    <a [routerLink]="['/forgotpassadmin']" [routerLinkActive]="['active']"><b>Forgot Password?</b></a>
+                </div>
+            </div>
+        </mat-card-footer>
+    </mat-card>
+</div>

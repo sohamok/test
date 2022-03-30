@@ -1,0 +1,96 @@
+<div class="container-fluid">
+
+  <div class="row ">
+    <div class="col-md-2 col-lg-2 col-sm-12 ">
+      <button class="btn btn-primary btn-sm mt-3" type="button" (click)="addNewWeldingSequence()"><i class="fa fa-plus" aria-hidden="true"></i> Welding Sequence</button>
+    </div>
+
+    <div class="col-md-10 col-lg-10 col-sm-12 ">
+      <span class="float-right">
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input>
+        </mat-form-field>
+      </span>
+    </div>
+  </div>
+
+  <div class="mat-elevation-z8 mb-4">
+    <div class="table-container">
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="refName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Ref. Name</strong></th>
+          <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label='Ref. Name : '> {{element.refName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="back_gouging">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Back Gouging </strong>  </th>
+          <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label='Back Gouging : '> {{element.back_gouging}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="track_welding_proc">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Welding Procedure</strong>  </th>
+          <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label='Welding Procedure : '> {{element.track_welding_proc}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="backing">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Backing</strong>  </th>
+          <td mat-cell *matCellDef="let element" class='has_label_on_mobile' test data-label='Backing : '>{{element.backing}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="mode_of_metal_transfer">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Metal Transfer Mode</strong></th>
+          <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label='Metal Transfer Mode : '> {{element.mode_of_metal_transfer}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="flux_designation">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Flux Designation</strong></th>
+          <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label='Flux Designation : '> {{element.flux_designation}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="joint_preparation_and_cleaning">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Joint Preparation And Cleaning</strong></th>
+          <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label='Joint Preparation And Cleaning : '> {{element.joint_preparation_and_cleaning}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tungsten_electrode">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Tungsten Electrode</strong></th>
+          <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label='Tungsten Electrode : '> {{element.tungsten_electrode}} </td>
+        </ng-container>
+
+        <!-- <ng-container matColumnDef="welding_seq_diagram">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Welding Sequence Diagram</strong></th>
+          <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label='Welding Sequence Diagram : '> <i class="fa fa-picture-o fa-2x" style="cursor: pointer;" aria-hidden="true" (click)="showImage(element.welding_seq_diagram)"></i></td>
+        </ng-container> -->
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef><strong>Action</strong></th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button [matMenuTriggerFor]="menu" [matMenuTriggerData]="{element:element}">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+    <mat-paginator class="paginator" [pageSizeOptions]="[8, 20, 30]"></mat-paginator>
+  </div>
+
+  <mat-menu #menu="matMenu">
+    <ng-template matMenuContent let-aliasMenuItems="element">
+      <button mat-menu-item (click)="view_edit(aliasMenuItems)">
+        <mat-icon >view_list</mat-icon>
+        <span>View/ Edit</span>
+      </button>
+      <button mat-menu-item (click)="delete(aliasMenuItems)">
+        <mat-icon>delete</mat-icon>
+        <span>Delete</span>
+      </button>
+    </ng-template>
+  </mat-menu>
+</div>
+
+

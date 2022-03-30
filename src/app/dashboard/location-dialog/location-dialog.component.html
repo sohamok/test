@@ -1,0 +1,59 @@
+<div class="container-fluid ">
+  
+  <div class="row text-center">
+    <div class="col">
+      <strong>Select Location</strong> 
+    </div>
+  </div>
+
+  <div class="row text-center" *ngIf="locName && siteName && hireName">
+    <div class="col" >
+      Location : {{locName}} , Site : {{siteName}} , Hierarchy : {{hireName}}
+    </div>
+  </div>
+
+  <div class="row mt-2 mx-auto" *ngFor="let loc of location; let i=index">
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" [hideToggle]="true" class="locationPanel">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+              <strong>Location</strong> : {{loc.name}}
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        
+        <div class=" row mt-2 text-center" *ngFor="let s of loc.Sites; let j=index;">
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="sitePanel">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <strong>Site</strong> : {{s.name}}
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <div class="ml-2">
+                  <fieldset class="scheduler-border p-4">
+                    <legend class="scheduler-border">Hierarchy</legend>
+                      <mat-radio-group name="opList" aria-label="Select an option" class="xyz" [(ngModel)]="selectedLocation">
+                        <mat-radio-button name="opList" *ngFor="let h of s.Hierarchy_Groups; let k=index;" [checked]="checked" [value]="h">
+                            {{h.name}}
+                        </mat-radio-button>
+                      </mat-radio-group>
+                  </fieldset>  
+                </div>
+            </mat-expansion-panel>
+        </div>
+        
+    </mat-expansion-panel>
+   
+  </div>
+
+  <div class="row mt-5 mr-1 float-right">
+    <div class="col mr-0 pr-0">
+        <button class="btn btn-primary" type="button" (click)="onClick()">Cancel</button>
+    </div>
+    <div class="col ml-0" >
+      <button class="btn btn-primary" type="button" (click)="save()">Save</button>
+    </div>
+    
+  </div>
+
+</div>
+

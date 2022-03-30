@@ -1,0 +1,169 @@
+<div class="container-fluid mx-1 p-1 my-3">
+    <div class="m-3 text-center"><h4>New User</h4></div>
+
+    <div class="mt-3 mx-0 px-0">
+        <form [formGroup]="userForm" (keydown.enter)="userPressEnter()">
+            <div class="row mb-1 mx-1">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Name</mat-label>
+                        <input matInput formControlName="name" [errorStateMatcher]="matcher" placeholder="Ex. Jon Deo">
+                        <mat-error *ngIf="form.name.hasError('required')">
+                            Name is <strong>required</strong>
+                        </mat-error>
+
+                    </mat-form-field>
+                </div>
+
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email" [errorStateMatcher]="matcher" placeholder="Ex. jon@example.com">
+                        <mat-error *ngIf="form.email.hasError('email') && !form.email.hasError('required')">
+                            Please enter a valid email address
+                        </mat-error>
+                        <mat-error *ngIf="form.email.hasError('required')">
+                            Email is <strong>required</strong>
+                        </mat-error>
+
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row mb-1 mx-1">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Role</mat-label>
+                        <mat-select formControlName="roleid">
+                            <mat-option *ngFor="let r of role" [value]="r.roleid">{{r.role}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="form.roleid.hasError('required')">
+                            Role is <strong>required</strong>
+                        </mat-error>
+
+                    </mat-form-field>
+                </div>
+
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Hierarchy Group</mat-label>
+                        <input matInput formControlName="hierarchy" [errorStateMatcher]="matcher"  readonly>
+                        <button mat-icon-button matSuffix (click)="selectLocation()" [attr.aria-label]="'Hide password'" > 
+                            <mat-icon>open_in_new</mat-icon>
+                        </button>
+                        <mat-error *ngIf="form.hierarchy.hasError('required')">
+                            Hierarchy Group is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Certificate No</mat-label>
+                        <input matInput formControlName="certificate_id" [errorStateMatcher]="matcher" placeholder="Ex. A129B360">
+                        <mat-error *ngIf="form.certificate_id.hasError('required')">
+                            Certificate No is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row mb-1 mx-1">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Phone No</mat-label>
+                        <input matInput formControlName="phno" [errorStateMatcher]="matcher" placeholder="Ex. 9876543210">
+                        <mat-error *ngIf="form.phno.hasError('required')">
+                            Phone No is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Id</mat-label>
+                        <input matInput formControlName="identification_no" [errorStateMatcher]="matcher" placeholder="Ex. Example-100">
+                        <mat-error *ngIf="form.identification_no.hasError('required')">
+                            Id is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row mb-1 mx-1">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Password</mat-label>
+                        <input matInput [type]="hide1 ? 'password' : 'text'" formControlName="password" [errorStateMatcher]="matcher" placeholder="Ex. Password@123">
+                        <mat-hint class="passError">Choose a password of at least six characters, one uppercase letter and one number</mat-hint>
+                        <button mat-icon-button matSuffix (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide1">
+                            <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="!userForm.controls['password'].valid && userForm.controls['password'].touched">
+                        <!-- <mat-error *ngIf="checkPassword"> -->
+                            {{ getErrorPassword() }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Confirm Password</mat-label>
+                        <input matInput [type]="hide2 ? 'password' : 'text'" formControlName="repassword" [errorStateMatcher]="matcher" placeholder="Ex. Password@123" (click)="onPasswordCheck()">
+                        <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
+                            <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="form.repassword.hasError('required')">
+                            Confirm password is <strong>required</strong>
+                        </mat-error>
+    
+                        <mat-error *ngIf="form.repassword.hasError('mismatch')">Password miss match</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="row float-right mt-auto mr-1">
+        <div class="col mr-0 pr-0 mt-2">
+            <button class="btn btn-primary" type="button" (click)="closeDialog()">Cancel</button>
+        </div>
+        <div class="col ml-0 mt-2" *ngIf="!element">
+            <button class="btn btn-primary" type="button" (click)="save()">Save</button>
+        </div>
+        <div class="col ml-0 mt-2" *ngIf="element">
+            <button class="btn btn-primary" type="button" (click)="update()">Update</button>
+        </div>
+
+    </div>
+
+    <!-- <mat-card>
+        <mat-card-title>
+
+        </mat-card-title>
+        <mat-card-content>
+
+        </mat-card-content>
+
+        <mat-card-actions>
+            <button type="button" class="mx-1 btn btn-primary  login-btn" (click)="submit()">Login</button>
+        </mat-card-actions>
+
+        <mat-card-footer>
+            <div class="row login-footer mb-3">
+                <div class="col-7 ml-4 mr-0 pr-0">
+                    Have not an account yet? <a [routerLink]="['/signup']" [routerLinkActive]="['active']">Sign up</a>
+                </div>
+                <div class="col-4 ml-1 mr-0 pl-1 pr-0">
+                    <a [routerLink]="['/howItsWork']" [routerLinkActive]="['active']">Forgot Password?</a>
+                </div>
+            </div>
+        </mat-card-footer>
+    </mat-card> -->
+</div>
+
+
+
+
+

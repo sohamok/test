@@ -1,0 +1,111 @@
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-md-2 col-lg-2 col-sm-12 ">
+      <button class="btn btn-primary btn-sm mt-3" type="button" (click)="addNewJointDesign()"><i class="fa fa-plus" aria-hidden="true"></i> Joint Design</button>
+    </div>
+
+    <div class="col-md-10 col-lg-10 col-sm-12 ">
+      <span class="float-right">
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input>
+        </mat-form-field>
+      </span>
+    </div>
+  </div>
+
+  <div class="mat-elevation-z8 mb-4">
+    <div class="table-container">
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="refName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Ref. Name</strong></th>
+          <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label='Ref. Name : '> {{element.refName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="joint_type">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Joint Type</strong>  </th>
+          <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label='Joint Type : '> {{element.joint_type}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="product_type">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Product Type</strong>  </th>
+          <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label='Product Type : '> {{element.product_type}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="backing">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Backing</strong>  </th>
+          <td mat-cell *matCellDef="let element" class='has_label_on_mobile' test data-label='Backing : '>{{element.backing}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="sides">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Sides</strong></th>
+          <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label='Sides : '> {{element.sides}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="throat_thickness">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Throat Thickness</strong></th>
+          <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label='Throat Thickness : '> {{element.throat_thickness}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="torch_angle">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Torch Angle</strong></th>
+          <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label='Torch Angle : '> {{element.torch_angle}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="stick_out_length">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Stick Out Length</strong></th>
+          <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label='Stick Out Length : '> {{element.stick_out_length}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="layers">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Layers</strong></th>
+          <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label='Layers : '> {{element.layers}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="welding_position">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Welding Position</strong></th>
+          <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label='Welding Position : '> {{element.welding_position}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="technique">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Technique</strong></th>
+          <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label='Technique : '> {{element.technique}} </td>
+        </ng-container>
+
+        <!-- <ng-container matColumnDef="joint_design_diagram">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Diagram</strong></th>
+          <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label='Joint Design Diagram : '>  <i class="fa fa-picture-o fa-2x" style="cursor: pointer;" aria-hidden="true" (click)="showImage(element.joint_design_diagram)"></i> </td>
+        </ng-container> -->
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef><strong>Action</strong></th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button [matMenuTriggerFor]="menu" [matMenuTriggerData]="{element:element}">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+    <mat-paginator class="paginator" [pageSizeOptions]="[8, 20, 30]"></mat-paginator>
+  </div>
+
+  <mat-menu #menu="matMenu">
+    <ng-template matMenuContent let-aliasMenuItems="element">
+      <button mat-menu-item (click)="view_edit(aliasMenuItems)">
+        <mat-icon >view_list</mat-icon>
+        <span>View/ Edit</span>
+      </button>
+      <button mat-menu-item (click)="delete(aliasMenuItems)">
+        <mat-icon>delete</mat-icon>
+        <span>Delete</span>
+      </button>
+    </ng-template>
+  </mat-menu>
+</div>
+
+

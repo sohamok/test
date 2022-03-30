@@ -1,0 +1,116 @@
+<div class="container-fluid mx-1 p-1 my-3">
+    <div class="m-2 text-center">
+        <h4>Update Threshold</h4>
+    </div>
+    <div class="mt-2 mx-0 px-0">
+        <form [formGroup]="thresholdForm">
+            <div class="row mb-1 mx-1">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Voltage Upper Level</mat-label>
+                        <input matInput formControlName="high_weld_volt_threshold" [errorStateMatcher]="matcher">
+                        <mat-error *ngIf="form.high_weld_volt_threshold.hasError('required')">
+                            High voltage threshold is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Voltage Set Level</mat-label>
+                        <input matInput formControlName="set_weld_volt_threshold" [errorStateMatcher]="matcher">
+                        <mat-error *ngIf="form.set_weld_volt_threshold.hasError('required')">
+                            Set voltage threshold is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Voltage Low Level</mat-label>
+                        <input matInput formControlName="low_weld_volt_threshold" [errorStateMatcher]="matcher">
+                        <mat-error *ngIf="form.low_weld_volt_threshold.hasError('required')">
+                            Low voltage threshold is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row mb-1 mx-1">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Current Upper Level</mat-label>
+                        <input matInput formControlName="high_weld_cur_threshold" [errorStateMatcher]="matcher">
+                        <mat-error *ngIf="form.high_weld_cur_threshold.hasError('required')">
+                            High current threshold is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Current Set Level</mat-label>
+                        <input matInput formControlName="set_weld_cur_threshold" [errorStateMatcher]="matcher">
+                        <mat-error *ngIf="form.set_weld_cur_threshold.hasError('required')">
+                            Set current threshold is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Current Low Level</mat-label>
+                        <input matInput formControlName="low_weld_cur_threshold" [errorStateMatcher]="matcher">
+                        <mat-error *ngIf="form.low_weld_cur_threshold.hasError('required')">
+                            Low current threshold is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row mb-1 mx-1">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Gas Upper Level</mat-label>
+                        <input matInput formControlName="high_weld_gas_threshold" [errorStateMatcher]="matcher">
+                        <mat-error *ngIf="form.high_weld_gas_threshold.hasError('required')">
+                            High gas threshold is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Gas Set Level</mat-label>
+                        <input matInput formControlName="set_weld_gas_threshold" [errorStateMatcher]="matcher">
+                        <mat-error *ngIf="form.set_weld_gas_threshold.hasError('required')">
+                            Set gas threshold is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Gas Low Level</mat-label>
+                        <input matInput formControlName="low_weld_gas_threshold" [errorStateMatcher]="matcher">
+                        <mat-error *ngIf="form.low_weld_gas_threshold.hasError('required')">
+                            Low gas threshold is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="row float-right mt-auto mr-1">
+        <div class="col mr-0 pr-0">
+            <button class="btn btn-primary" type="button" (click)="closeDialog()">Cancel</button>
+        </div>
+        <div class="col ml-0">
+            <button class="btn btn-primary" type="button" (click)="update()">Update</button>
+        </div>
+
+    </div>
+
+</div>

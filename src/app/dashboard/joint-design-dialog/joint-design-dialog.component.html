@@ -1,0 +1,184 @@
+<div class="container-fluid mx-1 p-1 my-3">
+    <div class="m-2 text-center"><h4>Joint Design</h4></div>
+    <div class="mt-2 mx-0 px-0">
+        <form [formGroup]="jointDesignForm" (keydown.enter)="jointDesignPressEnter()">
+            <div class="row mb-1 mx-1">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Ref. Name</mat-label>
+                        <input matInput formControlName="refName" [errorStateMatcher]="matcher" placeholder="Ex. JD">
+                        <mat-error *ngIf="form.refName.hasError('required')">
+                            Ref. Name is <strong>required</strong>
+                        </mat-error>
+
+                    </mat-form-field>
+                </div>
+
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Joint Type</mat-label>
+                        <input matInput formControlName="joint_type" [errorStateMatcher]="matcher" placeholder="Ex. 2">
+                        <!-- <mat-error *ngIf="form.joint_type.hasError('required')">
+                            Joint Type is <strong>required</strong>
+                        </mat-error> -->
+
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row mb-1 mx-1">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Product Type</mat-label>
+                        <input matInput formControlName="product_type" [errorStateMatcher]="matcher" placeholder="Ex. steel">
+                        <!-- <mat-error *ngIf="form.product_type.hasError('required')">
+                            Product Type is <strong>required</strong>
+                        </mat-error> -->
+
+                    </mat-form-field>
+                </div>
+
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Backing</mat-label>
+                        <input matInput formControlName="backing" [errorStateMatcher]="matcher" placeholder="Ex. yes">
+                        <!-- <mat-error *ngIf="form.backing.hasError('required')">
+                            backing is <strong>required</strong>
+                        </mat-error> -->
+
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row mb-1 mx-1">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Sides</mat-label>
+                        <input matInput formControlName="sides" [errorStateMatcher]="matcher" placeholder="Ex. 2">
+                        <!-- <mat-error *ngIf="form.sides.hasError('required')">
+                            Sides is <strong>required</strong>
+                        </mat-error> -->
+
+                    </mat-form-field>
+                </div>
+
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Throat Thickness</mat-label>
+                        <input matInput formControlName="throat_thickness" [errorStateMatcher]="matcher" placeholder="Ex. 1.2">
+                        <!-- <mat-error *ngIf="form.throat_thickness.hasError('required')">
+                            Throat Thickness is <strong>required</strong>
+                        </mat-error> -->
+
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row mb-1 mx-1">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Torch Angle</mat-label>
+                        <input matInput formControlName="torch_angle" [errorStateMatcher]="matcher" placeholder="Ex. 60">
+                        <!-- <mat-error *ngIf="form.torch_angle.hasError('required')">
+                            Torch Angle is <strong>required</strong>
+                        </mat-error> -->
+
+                    </mat-form-field>
+                </div>
+
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Stick Out Length</mat-label>
+                        <input matInput formControlName="stick_out_length" [errorStateMatcher]="matcher" placeholder="Ex. 1.2">
+                        <!-- <mat-error *ngIf="form.stick_out_length.hasError('required')">
+                            Stick Out Length is <strong>required</strong>
+                        </mat-error> -->
+
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row mb-1 mx-1">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Layers</mat-label>
+                        <input matInput formControlName="layers" [errorStateMatcher]="matcher" placeholder="Ex. 1">
+                        <!-- <mat-error *ngIf="form.layers.hasError('required')">
+                            Layers is <strong>required</strong>
+                        </mat-error> -->
+
+                    </mat-form-field>
+                </div>
+
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Welding Position</mat-label>
+                        <input matInput formControlName="welding_position" [errorStateMatcher]="matcher" placeholder="Ex. joint">
+                        <!-- <mat-error *ngIf="form.welding_position.hasError('required')">
+                            Welding Position is <strong>required</strong>
+                        </mat-error> -->
+
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row mb-1 mx-1">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Technique</mat-label>
+                        <input matInput formControlName="technique" [errorStateMatcher]="matcher" placeholder="Ex. weld">
+                        <!-- <mat-error *ngIf="form.technique.hasError('required')">
+                            Technique is <strong>required</strong>
+                        </mat-error> -->
+
+                    </mat-form-field>
+                </div>
+
+                <div class="col">
+                    <!-- <mat-form-field>
+                        <mat-label>Joint Design Diagram</mat-label>
+                        <input matInput formControlName="joint_design_diagram" [errorStateMatcher]="matcher" placeholder="Ex. ">
+                        <mat-error *ngIf="form.joint_design_diagram.hasError('required')">
+                            Joint Design Diagram is <strong>required</strong>
+                        </mat-error>
+
+                    </mat-form-field> -->
+                    <!-- <div class="jdClass">
+                      Joint Design Diagram
+                    </div>
+                    <div class="row mt-2">
+
+                      <div class="col">
+                        <div class="uploadBtn btn btn-sm btn-primary" (change)="uploadFile($event)"> <i class="fa fa-upload" aria-hidden="true"></i> &nbsp; Upload
+                          <input class="uploadFileInput" type="file" name="file" accept=".png, .jpg, .jpeg, .gif"/>
+                        </div>
+                      </div>
+                      <div class="col ml-0 pl-0" *ngIf="isImageUploded || element" style="cursor: pointer;">
+                        <i class="fa fa-picture-o fa-2x" aria-hidden="true" (click)="showImage()"></i>
+                      </div>
+                    </div> -->
+
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="row float-right mt-auto mr-1">
+        <div class="col mr-0 pr-0">
+            <button class="btn btn-primary" type="button" (click)="closeDialog()">Cancel</button>
+        </div>
+        <div class="col ml-0" *ngIf="!element">
+            <button class="btn btn-primary" type="button" (click)="save()">Save</button>
+        </div>
+        <div class="col ml-0" *ngIf="element">
+            <button class="btn btn-primary" type="button" (click)="update()">Update</button>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+

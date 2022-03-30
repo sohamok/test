@@ -1,0 +1,96 @@
+<div class="container-fluid main-container">
+    <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-12 my-2" *ngFor="let com of componentTrackingArray; let i=index;"> 
+          <!-- col-lg-4 col-md-2 col-sm-1 mx-auto my-2 -->
+            <mat-card class="col">
+              <mat-card-header>
+                <div class="example-header-image"></div>
+                <mat-card-title>{{com.name}}</mat-card-title>
+                <mat-card-subtitle>Specification: {{com.specs_name}}</mat-card-subtitle>
+              </mat-card-header>
+          
+              <mat-card-content>
+                <div class="ml-3">
+                  <div class="row mb-2" >
+                    <div class="col-lg-7 col-md-6 col-sm-7 col-7 mt-1">
+                      Contact Tip : {{ com.contacttip_remaining/60 | number:'1.0-0' }} minutes
+                    </div>
+  
+                    <div class="col-lg-5 col-md-6 col-sm-5 col-5" *ngIf="edit[i]">
+                      <mat-slide-toggle (change)="toggleContactTip($event,i)">Refill!</mat-slide-toggle>
+                    </div>
+                  </div>  
+  
+                  <div class="row mb-2">
+                    <div class="col-lg-7 col-md-6 col-sm-7 col-7 mt-1">
+                      Nozzle : {{ com.nozzle_remaining/60 | number:'1.0-0' }} minutes
+                    </div>
+  
+                    <div class="col-lg-5 col-md-6 col-sm-5 col-5" *ngIf="edit[i]">
+                      <mat-slide-toggle (change)="toggleNozzle($event,i)">Refill!</mat-slide-toggle>
+                    </div>
+                  </div>  
+  
+                  <div class="row mb-2">
+                    <div class="col-lg-7 col-md-6 col-sm-7 col-7 mt-1">
+                      Orifice : {{ com.orifice_remaining/60 | number:'1.0-0' }} minutes
+                    </div>
+  
+                    <div class="col-lg-5 col-md-6 col-sm-5 col-5" *ngIf="edit[i]">
+                      <mat-slide-toggle (change)="toggleOrifice($event,i)">Refill!</mat-slide-toggle>
+                    </div>
+                  </div>  
+  
+                  <!-- <div class="row mb-2">
+                    <div class="col-lg-7 col-md-6 col-sm-7 col-7 mt-1" >
+                      Cleaning Gel : {{ com.cleaninggel_remaining/60 | number:'1.0-0' }}
+                    </div>
+  
+                    <div class="col-lg-5 col-md-6 col-sm-5 col-5" *ngIf="edit[i]">
+                      <input class="inputfield" type="number" [(ngModel)]="cleaninggel[i]" placeholder="Refill cleaning gel..">
+                    </div>
+                  </div>   -->
+  
+                  <div class="row mb-2">
+                    <div class="col-lg-7 col-md-6 col-sm-7 col-7 mt-1">
+                      Wire : {{ com.wire_remaining | number:'1.0-0'}} Kg
+                    </div>
+  
+                    <div class="col-lg-5 col-md-6 col-sm-5 col-5" *ngIf="edit[i]">
+                      <input class="inputfield" type="number" [(ngModel)]="wireRemaning[i]" placeholder="Refill wire..">
+                    </div>
+                  </div>  
+  
+                  <div class="row">
+                    <div class="col-lg-7 col-md-6 col-sm-7 col-7 mt-1 mb-2">
+                      Gas : {{ com.gas_remaining | number:'1.0-0' }} Litre
+                    </div>
+  
+                    <div class="col-lg-5 col-md-6 col-sm-5 col-5 " *ngIf="edit[i]">
+                      <!-- <mat-form-field>
+                        <mat-label>Refill Gas</mat-label>
+                        <input matInput type="number" [(ngModel)]="gasRemaning[i]" placeholder="Ex. 10 min">
+                    </mat-form-field> -->
+                    
+                      <input class="inputfield" type="number" [(ngModel)]="gasRemaning[i]" placeholder="Refill gas..">
+                    </div>
+                  </div>  
+                </div>
+              </mat-card-content>
+
+              <mat-card-actions class="mt-0 ">
+                <div class="row ml-2 mt-0">
+                  <div class="col">
+                    <button  class="btn btn-primary btn-sm mr-2" (click)=save(com,i) *ngIf="edit[i]" >SAVE</button>
+                    <button  class="btn btn-primary btn-sm mr-2" (click)=onEdit(i) *ngIf="!edit[i]">EDIT</button>
+                    <button  class="btn btn-primary btn-sm mr-2" (click)=cancel(i) *ngIf="edit[i]">Cancel</button>
+                  </div>
+                  
+                </div>
+              </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+

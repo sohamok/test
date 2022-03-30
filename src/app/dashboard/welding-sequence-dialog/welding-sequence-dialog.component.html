@@ -1,0 +1,138 @@
+<div class="container-fluid mx-1 p-1 my-3">
+    <div class="m-3 text-center"><h4>Welding Sequence</h4></div>
+    <div class="mt-4 mx-0 px-0">
+        <form [formGroup]="weldingSequenceForm" (keydown.enter)="weldSeqPressEnter()">
+            <div class="row mb-1 mx-1">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Ref. Name</mat-label>
+                        <input matInput formControlName="refName" [errorStateMatcher]="matcher" placeholder="Ex. WS">
+                        <mat-error *ngIf="form.refName.hasError('required')">
+                            Ref. Name is <strong>required</strong>
+                        </mat-error>
+
+                    </mat-form-field>
+                </div>
+
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Back Gouging</mat-label>
+                        <input matInput formControlName="back_gouging" [errorStateMatcher]="matcher" placeholder="Ex. BG">
+                        <!-- <mat-error *ngIf="form.back_gouging.hasError('required')">
+                            Back Gouging is <strong>required</strong>
+                        </mat-error> -->
+
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row mb-1 mx-1">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Welding Procedure</mat-label>
+                        <input matInput formControlName="track_welding_proc" [errorStateMatcher]="matcher" placeholder="Ex. Gas Metal">
+                        <!-- <mat-error *ngIf="form.track_welding_proc.hasError('required')">
+                            Welding Procedure is <strong>required</strong>
+                        </mat-error> -->
+
+                    </mat-form-field>
+                </div>
+
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Backing</mat-label>
+                        <input matInput formControlName="backing" [errorStateMatcher]="matcher" placeholder="Ex. 4.2">
+                        <!-- <mat-error *ngIf="form.backing.hasError('required')">
+                            backing is <strong>required</strong>
+                        </mat-error> -->
+
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row mb-1 mx-1">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Metal Transfer Mode</mat-label>
+                        <input matInput formControlName="mode_of_metal_transfer" [errorStateMatcher]="matcher" placeholder="Ex. spray">
+                        <!-- <mat-error *ngIf="form.mode_of_metal_transfer.hasError('required')">
+                            Metal Transfer Mode is <strong>required</strong>
+                        </mat-error> -->
+
+                    </mat-form-field>
+                </div>
+
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Flux Designation</mat-label>
+                        <input matInput formControlName="flux_designation" [errorStateMatcher]="matcher" placeholder="Ex. FD">
+                        <!-- <mat-error *ngIf="form.flux_designation.hasError('required')">
+                            Flux Designation is <strong>required</strong>
+                        </mat-error> -->
+
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row mb-1 mx-1">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Joint Preparation And Cleaning</mat-label>
+                        <input matInput formControlName="joint_preparation_and_cleaning" [errorStateMatcher]="matcher" placeholder="Ex. yes">
+                        <!-- <mat-error *ngIf="form.joint_preparation_and_cleaning.hasError('required')">
+                            Joint Preparation And Cleaning is <strong>required</strong>
+                        </mat-error> -->
+
+                    </mat-form-field>
+                </div>
+
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Tungsten Electrode</mat-label>
+                        <input matInput formControlName="tungsten_electrode" [errorStateMatcher]="matcher" placeholder="Ex. TE">
+                        <!-- <mat-error *ngIf="form.tungsten_electrode.hasError('required')">
+                            Tungsten Electrode is <strong>required</strong>
+                        </mat-error> -->
+
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <!-- <div class="row mb-1 mx-1">
+                <div class="col">
+
+                    <div class="wsClass">
+                      Welding Sequence Diagram
+                    </div>
+
+                    <div class="row mt-2">
+
+                      <div class="col">
+                        <div class="uploadBtn btn btn-sm btn-primary" (change)="uploadFile($event)"> <i class="fa fa-upload" aria-hidden="true"></i> &nbsp; Upload
+                          <input class="uploadFileInput" type="file" name="file" accept=".png, .jpg, .jpeg, .gif"/>
+                        </div>
+                      </div>
+                      <div class="col ml-0 pl-0" *ngIf="isImageUploded || element" style="cursor: pointer;">
+                        <i class="fa fa-picture-o fa-2x" aria-hidden="true" (click)="showImage()"></i>
+                      </div>
+                    </div>
+                </div>
+            </div> -->
+
+        </form>
+    </div>
+
+    <div class="row float-right mt-auto mr-1">
+        <div class="col mr-0 pr-0">
+            <button class="btn btn-primary" type="button" (click)="closeDialog()">Cancel</button>
+        </div>
+        <div class="col ml-0" *ngIf="!element">
+            <button class="btn btn-primary" type="button" (click)="save()">Save</button>
+        </div>
+        <div class="col ml-0" *ngIf="element">
+            <button class="btn btn-primary" type="button" (click)="update()">Update</button>
+        </div>
+
+    </div>
+
+</div>

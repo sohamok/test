@@ -1,0 +1,78 @@
+<div class="container-fluid boader boader-primary">
+
+    <div class="row ">
+      <div class="col-md-2 col-lg-2 col-sm-12 mb-2">
+        <button class="btn btn-primary btn-sm mt-3" type="button" [routerLink]="['../mconfig']" ><i class="fa fa-plus" aria-hidden="true"></i> Job Config</button>
+      </div>
+
+      <div class="col-md-10 col-lg-10 col-sm-12 ">
+        <span class="float-right">
+          <mat-form-field>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input>
+          </mat-form-field>
+        </span>
+      </div> 
+    </div>
+
+    <div class="mat-elevation-z8 mb-4">
+      <div class="table-container">
+        <table mat-table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="job_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Job Name</strong>  </th>
+            <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label='Job Name : '> {{element.job_name}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="ref_standards">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Ref Standards</strong></th>
+            <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label='Ref Standards : '> {{element.ref_standards}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="target_arc_time">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Target Arctime Per Shift</strong>  </th>
+            <td mat-cell *matCellDef="let element" class='has_label_on_mobile' test data-label='Target Arctime : '>{{element.target_arc_time/3600}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="target_weld_deposit">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Target Weld Deposit</strong></th>
+            <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label=' Target Weld Deposit : '> {{element.target_weld_deposit}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="target_weld_cost">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Target Weld Cost</strong>  </th>
+            <td mat-cell *matCellDef="let element" class='has_label_on_mobile' data-label='Target Weld Cost : '> {{element.target_weld_cost}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef><strong>Action</strong></th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button [matMenuTriggerFor]="menu" [matMenuTriggerData]="{element:element}">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+      <mat-paginator class="paginator" [pageSizeOptions]="[8, 20, 30]"></mat-paginator>
+    </div>
+
+    <mat-menu #menu="matMenu">
+      <ng-template matMenuContent let-aliasMenuItems="element">
+        <button mat-menu-item (click)="view_edit(aliasMenuItems)">
+          <mat-icon >view_list</mat-icon>
+          <span>View/ Edit</span>
+        </button>
+        <!-- <button mat-menu-item (click)="edit(aliasMenuItems)">
+          <mat-icon>edit</mat-icon>
+          <span>Edit</span>
+        </button> -->
+        <button mat-menu-item (click)="delete(aliasMenuItems)">
+          <mat-icon>delete</mat-icon>
+          <span>Delete</span>
+        </button>
+      </ng-template>
+    </mat-menu>
+
+</div>
